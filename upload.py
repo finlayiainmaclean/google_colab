@@ -55,7 +55,7 @@ def upload_to_gdrive(folder_title, file_name):
         file1.Upload()
         print(f"Updated file {file_name}")
     else:
-        file1 = drive.CreateFile(metadata={"title": file_name})
+        file1 = drive.CreateFile({'parents': [{'id': folder_id}]})
         file1.SetContentFile(file_name)
         file1.Upload()
         print(f"Uplodaded file {file_name}")
