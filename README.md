@@ -20,7 +20,7 @@ google_colab
 *To use GPU/TPU to run script to load `data` and `models` and save results back*
 1. LOCAL: Upload data + zip and models from localhost (`python upload.py`)
 2. LOCAL: Push local changes to git repo
-3. COLAB: Clone git repo
+3. COLAB: Load notebook from git repo (`notebooks/colab.ipynb` as template), clone git repo + set up env
 4. COLAB: Download from google drive + unzip to colab (use `notebooks/colab.ipynb` as template) to repo `data` and `models` folders
 5. COLAB: `notebooks/colab.ipynb` runs src script (`src/colab.py` as template), using GPU/TPU
 6: COLAB: Reupload zipped folders to google drive (`notebooks/colab.ipynb` has code section)
