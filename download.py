@@ -24,14 +24,7 @@ else:
 gauth.SaveCredentialsFile("mycreds.txt")  
 drive = GoogleDrive(gauth)
 
-
-def zipdir(path, ziph):
-    # ziph is zipfile handle
-    for root, dirs, files in os.walk(path):
-        for file in files:
-            ziph.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), os.path.join(path, '..')))
-
-def upload_to_gdrive(folder_title, file_name):
+def download_from_gdrive(folder_title, file_name):
 
     folder_id = ''
 
@@ -50,27 +43,21 @@ def upload_to_gdrive(folder_title, file_name):
             break
 
     if file_id is not None:
-        file1 = drive.CreateFile({'id':file_id})
-        file1.SetContentFile(file_name)
-        file1.Upload()
-        print(f"Updated file {file_name}")
+        file = drive.CreateFile({'id': file_id})
+        file.GetContentFile(file_name)
+        print(f'Saved file {file_name}')
     else:
-        file1 = drive.CreateFile({'parents': [{'id': folder_id}]})
-        file1.SetContentFile(file_name)
-        file1.Upload()
-        print(f"Uplodaded file {file_name}")
+        print(f'Couldnt find file {file_name}')
 
-    del file1
-
-def zip_and_upload(folder):
-    zipf = zipfile.ZipFile(f'{folder}.zip', 'w', zipfile.ZIP_DEFLATED)
-    zipdir(f'{folder}/', zipf)
-    zipf.close()
-    upload_to_gdrive(GDRIVE_FOLDER, f'{folder}.zip')
+def download_and_unip(folder):
+    download_from_gdrive(GDRIVE_FOLDER,f'{folder}.zip')
+    with zipfile.ZipFile(f'{folder}.zip',"r") as zip_ref:
+        zip_ref.extractall("")
     os.remove(f'{folder}.zip')
+
 
 if __name__ == "__main__":
     folders_to_zip = ['data','models']
     for folder in folders_to_zip:
-        zip_and_upload(folder)
+        download_and_unip(folder)
 
