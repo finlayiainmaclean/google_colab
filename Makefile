@@ -62,9 +62,9 @@ create_environment:
 ifeq (True,$(HAS_CONDA))
 		@echo ">>> Detected conda, creating conda environment."
 ifeq (3,$(findstring 3,$(PYTHON_INTERPRETER)))
-	conda create -c rdkit --prefix=env/$(PROJECT_NAME) rdkit python=3
+	conda create -c rdkit --prefix=env/$(PROJECT_NAME) rdkit python=3 -y
 else
-	conda create -c rdkit --prefix=env/$(PROJECT_NAME) rdkit python=2.7
+	conda create -c rdkit --prefix=env/$(PROJECT_NAME) rdkit python=2.7 -y
 endif
 		@echo ">>> New conda env created. Activate with:\nsource activate $(PROJECT_NAME)"
 endif
