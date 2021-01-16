@@ -1,13 +1,13 @@
 google_colab
 ==============================
 
-*Set up PyDrive*
+*Set up PyDrive (only once for all projects)
 1. In Google Drive console add project + web app (localhost:8000)
 2. In Credentials add OAuth user
 3. Enable Google Drive API
 4. Run `drive_auth.py`
 
-*Set up everything else*
+*Set up project*
 1. Create project folder in Google Drive `root/$project_name`
 2. Create git project with same project name
 3. Create environment variable of project name `export PROJECT_NAME=google_colab `
